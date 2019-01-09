@@ -1,5 +1,5 @@
-import 'news-article.js';
-import {topHeadLinesUrl} from 'newsapi.js'
+import './news-article.js';
+import {topHeadLinesUrl} from './newsapi.js'
 
 window.addEventListener('load', () => {
     fetchNews();
@@ -8,11 +8,12 @@ window.addEventListener('load', () => {
 async function fetchNews() {
     const res = await fetch(topHeadLinesUrl);
     const json = await res.json();
+    const articles = await json.articles
 
     const main = document.querySelector('main');
 
-    jsonarticles.array.forEach(article => {
-        const el = document.createElement ('news-article');
+    articles.forEach(article => {
+        const el = document.createElement('news-article');
         el.article = article;
         main.appendChild(el);
     });
